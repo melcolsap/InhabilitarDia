@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGW_AGENDA_CITAS_PROVEEDOR_SRV" xml:lang="es" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="GetTipoAgenda" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Nit"/>
+                </Key>
+                <Property Name="Nit" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Nit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tipo_Agenda" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo de agenda" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Texto_Agenda" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Texto agenda" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GetNit" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Correo"/>
+                </Key>
+                <Property Name="Correo" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Correo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nit" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Nit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GetUsuario" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Nit"/>
+                </Key>
+                <Property Name="Nit" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Nit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Usuario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GetNombreProveedor" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Nit"/>
+                </Key>
+                <Property Name="Nit" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Nit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NombreProveedor" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Nombre" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GetHorasDisponibles" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CodigoHora"/>
+                </Key>
+                <Property Name="CodigoHora" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Codigo de Hora" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Disponible" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Disponible" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Seleccionada" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Seleccionada" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Results" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoMensaje"/>
+                </Key>
+                <Property Name="TipoMensaje" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipos de mensaje" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mensaje" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:label="Mensaje" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CabeceraAgenda" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoAgenda"/>
+                    <PropertyRef Name="Nit"/>
+                    <PropertyRef Name="Usuario"/>
+                </Key>
+                <Property Name="TipoAgenda" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de agenda" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nit" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="NIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Usuario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NitRef" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Nit Ref" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Evento" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Evento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaCita" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fecha de la cirta" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NombreProveedor" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Nombre del Proveedor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NombreProveedorRef" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Nombre del Proveedor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Operacion" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Operacion" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DescripcionEvento" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:label="Descripcion del evento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrdenCompra" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Orden de compra" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Recurso" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Recurso" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaInicio" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fecha de inicio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaFin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fecha Fin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Correo" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Correo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="NavToHoras" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToHorasDisponibles" FromRole="FromRole_CabeceraToHorasDisponibles" ToRole="ToRole_CabeceraToHorasDisponibles"/>
+                <NavigationProperty Name="NavToMensajes" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToMensajes" FromRole="FromRole_CabeceraToMensajes" ToRole="ToRole_CabeceraToMensajes"/>
+                <NavigationProperty Name="NavToCitas" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToCitas" FromRole="FromRole_CabeceraToCitas" ToRole="ToRole_CabeceraToCitas"/>
+            </EntityType>
+            <EntityType Name="CitasAgenda" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Znit"/>
+                </Key>
+                <Property Name="Event" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Evento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Eventdescription" Type="Edm.String" MaxLength="150" sap:unicode="false" sap:label="Desc Produc" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Znit" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Nº ident.fis.1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zname" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Razon Social" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zresource" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Recurso" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fechaevent" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Creado el" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cumplimiento" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Cumplimiento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoraInicio" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Hora Inicio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoraFin" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Hora Fin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SysEvent" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Cumplimiento" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Eventid" Type="Edm.Int32" sap:unicode="false" sap:label="EventID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zcomentario" Type="Edm.String" MaxLength="150" sap:unicode="false" sap:label="Desc Produc" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PersonaTipo" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tipo Persona" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZnameExtProve" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Proveedor Ref." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZnitExtProve" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="Nit Prove. Ref." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EstadoCita" Type="Edm.String" MaxLength="150" sap:unicode="false" sap:label="Estado Cita" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CabeceraConsultaCita" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Nit"/>
+                </Key>
+                <Property Name="Nit" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Nit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NombreProveedor" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Nombre del Proveedor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TipoAgenda" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de agenda" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaInicio" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fecha de inicio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaFin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fecha de Fin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Operacion" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Operacion" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="NavToMensajesConcultas" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaToMensajes" FromRole="FromRole_CabeceraConsultaToMensajes" ToRole="ToRole_CabeceraConsultaToMensajes"/>
+                <NavigationProperty Name="NavToConsultaCitas" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaToCitas" FromRole="FromRole_CabeceraConsultaToCitas" ToRole="ToRole_CabeceraConsultaToCitas"/>
+            </EntityType>
+            <Association Name="CabeceraConsultaToCitas" sap:content-version="1">
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaCita" Multiplicity="0..1" Role="FromRole_CabeceraConsultaToCitas"/>
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CitasAgenda" Multiplicity="*" Role="ToRole_CabeceraConsultaToCitas"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CabeceraConsultaToCitas">
+                        <PropertyRef Name="Nit"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CabeceraConsultaToCitas">
+                        <PropertyRef Name="Znit"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CabeceraConsultaToMensajes" sap:content-version="1">
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaCita" Multiplicity="0..1" Role="FromRole_CabeceraConsultaToMensajes"/>
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.Results" Multiplicity="*" Role="ToRole_CabeceraConsultaToMensajes"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CabeceraConsultaToMensajes">
+                        <PropertyRef Name="Nit"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CabeceraConsultaToMensajes">
+                        <PropertyRef Name="TipoMensaje"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CabeceraToMensajes" sap:content-version="1">
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraAgenda" Multiplicity="0..1" Role="FromRole_CabeceraToMensajes"/>
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.Results" Multiplicity="*" Role="ToRole_CabeceraToMensajes"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CabeceraToMensajes">
+                        <PropertyRef Name="Usuario"/>
+                        <PropertyRef Name="Nit"/>
+                        <PropertyRef Name="TipoAgenda"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CabeceraToMensajes">
+                        <PropertyRef Name="TipoMensaje"/>
+                        <PropertyRef Name="TipoMensaje"/>
+                        <PropertyRef Name="TipoMensaje"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CabeceraToCitas" sap:content-version="1">
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraAgenda" Multiplicity="0..1" Role="FromRole_CabeceraToCitas"/>
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CitasAgenda" Multiplicity="*" Role="ToRole_CabeceraToCitas"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CabeceraToCitas">
+                        <PropertyRef Name="Usuario"/>
+                        <PropertyRef Name="Nit"/>
+                        <PropertyRef Name="TipoAgenda"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CabeceraToCitas">
+                        <PropertyRef Name="Znit"/>
+                        <PropertyRef Name="Znit"/>
+                        <PropertyRef Name="Znit"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CabeceraToHorasDisponibles" sap:content-version="1">
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraAgenda" Multiplicity="0..1" Role="FromRole_CabeceraToHorasDisponibles"/>
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetHorasDisponibles" Multiplicity="*" Role="ToRole_CabeceraToHorasDisponibles"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CabeceraToHorasDisponibles">
+                        <PropertyRef Name="Usuario"/>
+                        <PropertyRef Name="Nit"/>
+                        <PropertyRef Name="TipoAgenda"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CabeceraToHorasDisponibles">
+                        <PropertyRef Name="CodigoHora"/>
+                        <PropertyRef Name="CodigoHora"/>
+                        <PropertyRef Name="CodigoHora"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZGW_AGENDA_CITAS_PROVEEDOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="GetTipoAgendaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetTipoAgenda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GetNitSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetNit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GetUsuarioSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetUsuario" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GetNombreProveedorSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetNombreProveedor" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GetHorasDisponiblesSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetHorasDisponibles" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ResultsSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.Results" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CabeceraAgendaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraAgenda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CitasAgendaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CitasAgenda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CabeceraConsultaCitaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaCita" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="CabeceraToMensajesSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToMensajes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CabeceraAgendaSet" Role="FromRole_CabeceraToMensajes"/>
+                    <End EntitySet="ResultsSet" Role="ToRole_CabeceraToMensajes"/>
+                </AssociationSet>
+                <AssociationSet Name="CabeceraConsultaToCitasSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaToCitas" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CabeceraConsultaCitaSet" Role="FromRole_CabeceraConsultaToCitas"/>
+                    <End EntitySet="CitasAgendaSet" Role="ToRole_CabeceraConsultaToCitas"/>
+                </AssociationSet>
+                <AssociationSet Name="CabeceraConsultaToMensajesSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaToMensajes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CabeceraConsultaCitaSet" Role="FromRole_CabeceraConsultaToMensajes"/>
+                    <End EntitySet="ResultsSet" Role="ToRole_CabeceraConsultaToMensajes"/>
+                </AssociationSet>
+                <AssociationSet Name="CabeceraToHorasDisponiblesSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToHorasDisponibles" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CabeceraAgendaSet" Role="FromRole_CabeceraToHorasDisponibles"/>
+                    <End EntitySet="GetHorasDisponiblesSet" Role="ToRole_CabeceraToHorasDisponibles"/>
+                </AssociationSet>
+                <AssociationSet Name="CabeceraToCitasSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToCitas" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CabeceraAgendaSet" Role="FromRole_CabeceraToCitas"/>
+                    <End EntitySet="CitasAgendaSet" Role="ToRole_CabeceraToCitas"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://172.18.20.79:8001/sap/opu/odata/sap/ZGW_AGENDA_CITAS_PROVEEDOR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://172.18.20.79:8001/sap/opu/odata/sap/ZGW_AGENDA_CITAS_PROVEEDOR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

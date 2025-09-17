@@ -1,0 +1,125 @@
+<mvc:View controllerName="co.mitsubishi.inhabilitardia.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:fs="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}" titleAlignment="Center">
+        <Panel
+            expandable="true" 
+            expanded="true" 
+            id="headerAgenda"
+            class="sapUiSmallMarginBottom"
+            width="100%"
+            headerText="{i18n>titlePanelExcluir}"
+        >
+            <content>
+                <fs:SimpleForm
+                    id="formExcluir"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="4"
+                    labelSpanL="4"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="1"
+                    emptySpanL="1"
+                    emptySpanM="1"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="1"
+                    singleContainerFullSize="false"
+                    breakpointXL="1440"
+                    breakpointL="1024"
+                    breakpointM="600"
+                    class="sapUiNoMargin"
+                >
+                    <fs:content>
+                        <!-- Primera columna -->
+                        <core:Title id="columnOne" text="" class="customTitleHeight" level="H6"/>
+                        <Label id="labelAgendas" text="{i18n>labelAgendas}" required="true" labelFor="comboBoxTipoAgenda" class="sapUiSmallMarginBottom" width="auto"/>
+                        <Select
+                            id="comboBoxTipoAgenda"
+				           	items="{StaticModel>/TipoAgenda}"
+                            showSecondaryValues= "true"
+                            class="sapUiSmallMarginBottom">
+                                <core:ListItem id="itemsTipoAgenda" key="{StaticModel>Id}" text="{StaticModel>TextAgenda}" additionalText="{StaticModel>Id}"/>
+			            </Select>
+                        <!-- Segunda columna -->
+                        <core:Title id="columnTwo" text="" class="customTitleHeight" level="H6" />
+                        <!-- Tercera columna -->
+                        <core:Title id="columnThree" text="" class="customTitleHeight" level="H6"/>
+                        <Panel id="panelOpc" headerText="{i18n>titlePanelOpc}" >
+                            <RadioButtonGroup id="GroupOpciones" buttons="{StaticModel>/Opciones}" select="onSelectOption">
+                                <RadioButton id="opcButtons" text="{StaticModel>Text}" selected="{StaticModel>Selected}" />
+                            </RadioButtonGroup>
+                        </Panel>
+                        <!-- Cuarta columna -->
+                        <core:Title id="columnFour" text="" class="customTitleHeight" level="H6"/>
+                         <Panel id="panelHelp" headerText="{i18n>titleHelp}" >
+                            <TextArea id="textDescip" height="7.8rem" width="100%" growing="true" editable="false"/>
+                        </Panel>
+                    </fs:content>
+                </fs:SimpleForm>
+            </content>
+        </Panel>
+         <Panel
+            expandable="true" 
+            expanded="true" 
+            id="headerGestion"
+            class="sapUiSmallMarginBottom responsive-single-column-panel"
+            headerText="{i18n>titlePanelRange}"
+            width="100%"
+        >
+            <content>
+               <Panel id="panelFiltroHoras" headerText="{i18n>titlePamaters}">
+                    <content>
+                        <Label id="labelStartDate" labelFor="datePickerFechaIni" required="true"/>
+                        <DatePicker id="datePickerFechaIni" placeholder="{i18n>placeHolderInitialDate}" change="handleChange" class="sapUiSmallMarginBottom" displayFormat="dd.MM.yyyy" valueFormat="dd/MM/yyyy"/>
+                        <Label id="labelEndDate" text="{i18n>labelEndDate}" labelFor="datePickerFechaFin" required="true"/>
+                        <DatePicker id="datePickerFechaFin" placeholder="{i18n>placeHolderEndDate}" change="handleChange" class="sapUiSmallMarginBottom" displayFormat="dd.MM.yyyy" valueFormat="dd/MM/yyyy"/>
+                        <Label id="labelJornada" text="{i18n>laberJornada}" required="true" labelFor="comboBoxJornada" visible="false"/>
+                        <Select
+                            id="comboBoxJornada"
+                            visible="false"
+				           	items="{StaticModel>/Jornada}"
+                            width="100%"
+                            class="sapUiSmallMarginBottom">
+                            <core:ListItem id="itemsJornada" key="{StaticModel>Id}" text="{StaticModel>TextJornada}"/>
+			            </Select>
+                    </content>
+                </Panel>
+                <Panel
+                    expanded="true" 
+                    id="headerHoras"
+                    class="sapUiSmallMarginBottom"
+                    width="100%"
+                    visible="true"
+                >
+                    <content>
+                        <VBox id="boxHoras">
+                            <List id="listHoras" mode="MultiSelect" backgroundDesign="Translucent" items="{StaticModel>/Horas}" selectionChange="onHoraAgenda">
+                                <StandardListItem id="itemHoras" title="{StaticModel>textHora}"/>
+                            </List>
+                        </VBox>
+                    </content>
+                </Panel>
+                <HBox id="boxButtons" class="sapUiResponsiveContenPadding"  alignItems="Center" wrap="Wrap" fitContainer="true" width="100%">
+                    <Button id="btnExcluir" text="{i18n>btnExluir}" press="_GetAppointments" class="sapUiTinyMarginEnd" icon="sap-icon://select-appointments"/>
+                    <Button id="btnClear" text="{i18n>btnClear}" press="_GetAppointments" icon="sap-icon://clear-all"/>
+                </HBox>
+            </content>
+        </Panel>
+        <footer>
+			<OverflowToolbar id="fotter">
+	            <Button id="messagePopoverBtn"
+					icon="{ path: '/', formatter: '.buttonIconFormatter' }"
+					type="{ path: '/', formatter: '.buttonTypeFormatter' }"
+					text= "{path: '/', formatter: '.highestSeverityMessages' }"
+					press=".handleMessagePopoverPress"
+					ariaHasPopup="Dialog"/>
+			</OverflowToolbar>
+		</footer>
+    </Page>
+</mvc:View>
