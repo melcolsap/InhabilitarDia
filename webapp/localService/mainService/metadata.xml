@@ -106,6 +106,25 @@
                 <NavigationProperty Name="NavToMensajesConcultas" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaToMensajes" FromRole="FromRole_CabeceraConsultaToMensajes" ToRole="ToRole_CabeceraConsultaToMensajes"/>
                 <NavigationProperty Name="NavToConsultaCitas" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaToCitas" FromRole="FromRole_CabeceraConsultaToCitas" ToRole="ToRole_CabeceraConsultaToCitas"/>
             </EntityType>
+            <EntityType Name="GetHoras" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IdHora"/>
+                </Key>
+                <Property Name="IdHora" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ID Hora" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TextHora" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Texto Hora" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CabeceraInhabilitarDia" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TipoAgenda"/>
+                </Key>
+                <Property Name="TipoAgenda" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Tipo de agenda" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Opcion" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Opcion" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaInicio" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fecha de inicio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaFin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fecha de fin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Jornada" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Jornada" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="NavToInhabilitarHoras" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraInhabilitarToHoras" FromRole="FromRole_CabeceraInhabilitarToHoras" ToRole="ToRole_CabeceraInhabilitarToHoras"/>
+                <NavigationProperty Name="NavToMensajesInhabilitar" Relationship="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraInhabilitarToMensajes" FromRole="FromRole_CabeceraInhabilitarToMensajes" ToRole="ToRole_CabeceraInhabilitarToMensajes"/>
+            </EntityType>
             <Association Name="CabeceraConsultaToCitas" sap:content-version="1">
                 <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaCita" Multiplicity="0..1" Role="FromRole_CabeceraConsultaToCitas"/>
                 <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CitasAgenda" Multiplicity="*" Role="ToRole_CabeceraConsultaToCitas"/>
@@ -135,9 +154,9 @@
                 <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.Results" Multiplicity="*" Role="ToRole_CabeceraToMensajes"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_CabeceraToMensajes">
-                        <PropertyRef Name="Usuario"/>
-                        <PropertyRef Name="Nit"/>
                         <PropertyRef Name="TipoAgenda"/>
+                        <PropertyRef Name="Nit"/>
+                        <PropertyRef Name="Usuario"/>
                     </Principal>
                     <Dependent Role="ToRole_CabeceraToMensajes">
                         <PropertyRef Name="TipoMensaje"/>
@@ -167,14 +186,38 @@
                 <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetHorasDisponibles" Multiplicity="*" Role="ToRole_CabeceraToHorasDisponibles"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_CabeceraToHorasDisponibles">
-                        <PropertyRef Name="Usuario"/>
-                        <PropertyRef Name="Nit"/>
                         <PropertyRef Name="TipoAgenda"/>
+                        <PropertyRef Name="Nit"/>
+                        <PropertyRef Name="Usuario"/>
                     </Principal>
                     <Dependent Role="ToRole_CabeceraToHorasDisponibles">
                         <PropertyRef Name="CodigoHora"/>
                         <PropertyRef Name="CodigoHora"/>
                         <PropertyRef Name="CodigoHora"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CabeceraInhabilitarToHoras" sap:content-version="1">
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraInhabilitarDia" Multiplicity="0..1" Role="FromRole_CabeceraInhabilitarToHoras"/>
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetHorasDisponibles" Multiplicity="*" Role="ToRole_CabeceraInhabilitarToHoras"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CabeceraInhabilitarToHoras">
+                        <PropertyRef Name="TipoAgenda"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CabeceraInhabilitarToHoras">
+                        <PropertyRef Name="CodigoHora"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CabeceraInhabilitarToMensajes" sap:content-version="1">
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraInhabilitarDia" Multiplicity="0..1" Role="FromRole_CabeceraInhabilitarToMensajes"/>
+                <End Type="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.Results" Multiplicity="*" Role="ToRole_CabeceraInhabilitarToMensajes"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CabeceraInhabilitarToMensajes">
+                        <PropertyRef Name="TipoAgenda"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CabeceraInhabilitarToMensajes">
+                        <PropertyRef Name="TipoMensaje"/>
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
@@ -188,6 +231,8 @@
                 <EntitySet Name="CabeceraAgendaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraAgenda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                 <EntitySet Name="CitasAgendaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CitasAgenda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                 <EntitySet Name="CabeceraConsultaCitaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaCita" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GetHorasSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.GetHoras" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CabeceraInhabilitarDiaSet" EntityType="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraInhabilitarDia" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                 <AssociationSet Name="CabeceraToMensajesSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToMensajes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="CabeceraAgendaSet" Role="FromRole_CabeceraToMensajes"/>
                     <End EntitySet="ResultsSet" Role="ToRole_CabeceraToMensajes"/>
@@ -199,6 +244,14 @@
                 <AssociationSet Name="CabeceraConsultaToMensajesSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraConsultaToMensajes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="CabeceraConsultaCitaSet" Role="FromRole_CabeceraConsultaToMensajes"/>
                     <End EntitySet="ResultsSet" Role="ToRole_CabeceraConsultaToMensajes"/>
+                </AssociationSet>
+                <AssociationSet Name="CabeceraInhabilitarToMensajesSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraInhabilitarToMensajes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CabeceraInhabilitarDiaSet" Role="FromRole_CabeceraInhabilitarToMensajes"/>
+                    <End EntitySet="ResultsSet" Role="ToRole_CabeceraInhabilitarToMensajes"/>
+                </AssociationSet>
+                <AssociationSet Name="CabeceraInhabilitarToHorasSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraInhabilitarToHoras" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CabeceraInhabilitarDiaSet" Role="FromRole_CabeceraInhabilitarToHoras"/>
+                    <End EntitySet="GetHorasDisponiblesSet" Role="ToRole_CabeceraInhabilitarToHoras"/>
                 </AssociationSet>
                 <AssociationSet Name="CabeceraToHorasDisponiblesSet" Association="ZGW_AGENDA_CITAS_PROVEEDOR_SRV.CabeceraToHorasDisponibles" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="CabeceraAgendaSet" Role="FromRole_CabeceraToHorasDisponibles"/>

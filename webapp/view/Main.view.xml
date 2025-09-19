@@ -76,9 +76,9 @@
                <Panel id="panelFiltroHoras" headerText="{i18n>titlePamaters}">
                     <content>
                         <Label id="labelStartDate" labelFor="datePickerFechaIni" required="true"/>
-                        <DatePicker id="datePickerFechaIni" placeholder="{i18n>placeHolderInitialDate}" change="handleChange" class="sapUiSmallMarginBottom" displayFormat="dd.MM.yyyy" valueFormat="dd/MM/yyyy"/>
+                        <DatePicker id="datePickerFechaIni" placeholder="{i18n>placeHolderInitialDate}" change="handleChange" class="sapUiSmallMarginBottom mandatoryField" displayFormat="dd.MM.yyyy" valueFormat="dd/MM/yyyy"/>
                         <Label id="labelEndDate" text="{i18n>labelEndDate}" labelFor="datePickerFechaFin" required="true"/>
-                        <DatePicker id="datePickerFechaFin" placeholder="{i18n>placeHolderEndDate}" change="handleChange" class="sapUiSmallMarginBottom" displayFormat="dd.MM.yyyy" valueFormat="dd/MM/yyyy"/>
+                        <DatePicker id="datePickerFechaFin" placeholder="{i18n>placeHolderEndDate}" change="handleChange" class="sapUiSmallMarginBottom mandatoryField" displayFormat="dd.MM.yyyy" valueFormat="dd/MM/yyyy"/>
                         <Label id="labelJornada" text="{i18n>laberJornada}" required="true" labelFor="comboBoxJornada" visible="false"/>
                         <Select
                             id="comboBoxJornada"
@@ -106,8 +106,8 @@
                     </content>
                 </Panel>
                 <HBox id="boxButtons" class="sapUiResponsiveContenPadding"  alignItems="Center" wrap="Wrap" fitContainer="true" width="100%">
-                    <Button id="btnExcluir" text="{i18n>btnExluir}" press="_GetAppointments" class="sapUiTinyMarginEnd" icon="sap-icon://select-appointments"/>
-                    <Button id="btnClear" text="{i18n>btnClear}" press="_GetAppointments" icon="sap-icon://clear-all"/>
+                    <Button id="btnExcluir" text="{i18n>btnExluir}" press="_exluirFecha" class="sapUiTinyMarginEnd" icon="sap-icon://select-appointments"/>
+                    <Button id="btnClear" text="{i18n>btnClear}" press="onClearFields" icon="sap-icon://clear-all"/>
                 </HBox>
             </content>
         </Panel>
@@ -118,7 +118,8 @@
 					type="{ path: '/', formatter: '.buttonTypeFormatter' }"
 					text= "{path: '/', formatter: '.highestSeverityMessages' }"
 					press=".handleMessagePopoverPress"
-					ariaHasPopup="Dialog"/>
+					ariaHasPopup="Dialog"
+                    visible="true"/>
 			</OverflowToolbar>
 		</footer>
     </Page>
