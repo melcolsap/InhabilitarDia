@@ -233,8 +233,16 @@ sap.ui.define([
                 }
                 return sIcon;
             },
+            compararFechas: function (fechaIngresada, fechaActual) {
+                const toDate = element => new Date(element.split('/').reverse().join('-'))
+                return toDate(fechaIngresada) >= toDate(fechaActual)
+            },
+             compararFechasMenor: function (fechaInicio, fechaFin) {
+                const toDate = element => new Date(element.split('/').reverse().join('-'))
+                return toDate(fechaInicio) <= toDate(fechaFin)
+            },
             _exluirFecha: function (oEvent) {
-                if (this.onValidateFilds(this.iDOptionSelected) && (this.oDPickerManana.getValue() >= fechaFormateada) && ((this.oDPickerManana.getValue() <= this.oDPickerEndDate.getValue()) || (this.oDPickerManana.getValue() !== "" && this.oDPickerEndDate.getValue() == ""))) {
+                if (this.onValidateFilds(this.iDOptionSelected) && (this.compararFechas(this.oDPickerManana.getValue(), fechaFormateada)) && (( this.compararFechasMenor(this.oDPickerManana.getValue(),this.oDPickerEndDate.getValue())) || (this.oDPickerManana.getValue() !== "" && this.oDPickerEndDate.getValue() == ""))) {
                     let oSelectAgenda = this.byId("comboBoxTipoAgenda")
                     let oSelectJornada = this.byId("comboBoxJornada")
                     let aSelectedHours = this.oListHoras.getSelectedItems()
@@ -278,14 +286,14 @@ sap.ui.define([
                             });
                         }
                     });
-                } else if (this.oDPickerManana.getValue() < fechaFormateada) {
+                } else if (!this.compararFechas(this.oDPickerManana.getValue(), fechaFormateada)) {
                     this.onUpdateModelPopOver({
                         type: 'Error',
                         title: 'Fecha inicial seleccionada no valida',
                         description: `La Fecha de inicio no puede menor a la fecha ${fechaFormateada}`,
                     });
                     this.setStatusPopOver()
-                } else if (this.oDPickerManana.getValue() > this.oDPickerEndDate.getValue()) {
+                } else if (!this.compararFechasMenor(this.oDPickerManana.getValue(),this.oDPickerEndDate.getValue())) {
                     this.onUpdateModelPopOver({
                         type: 'Error',
                         title: 'Selección de fechas no validas',
